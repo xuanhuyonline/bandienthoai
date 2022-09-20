@@ -1,0 +1,18 @@
+﻿@*<form action="../GioHang/GioHang" method="post" class="last">
+    <input type="hidden" name="cmd" value="_cart">
+    <input type="hidden" name="display" value="1">
+    <button class="btn w3view-cart text-center" type="submit" name="submit"
+            value="">
+        <div class="d-flex">
+            <i class="fas fa-cart-arrow-down"></i><span class="cart-number ml-2">(@ViewBag.TongSoLuong)</span>
+        </div>
+    </button>
+</form>*@
+
+<a href="@Url.Action("GioHang", "GioHang")">
+    <button class="btn w3view-cart text-center">
+        <div class="d-flex">
+            <i class="fas fa-cart-arrow-down"></i><span class="cart-number ml-2">(@ViewBag.TongSoLuong)</span>
+        </div>
+    </button>
+</a>

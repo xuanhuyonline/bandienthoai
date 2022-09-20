@@ -1,0 +1,98 @@
+﻿@using QuanLyDienThoai.Models
+@using PagedList.Mvc;
+@using PagedList;
+
+@using System.Globalization;
+
+@model PagedList.IPagedList<ChiTietThietBi>
+
+@{
+    ViewBag.Title = "QuanLyLoaiThietBi";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<div class="row justify-content-md-center">
+    <div class="col-12">
+        <h2>Quản lý thiết bị</h2>
+        <table class="table mt-4">
+            <tr>
+                <th>
+                    <label class="">Tên sản phẩm</label>
+                </th>
+                <th>
+                    <label class="">Hình ảnh</label>
+                </th>
+                <th>
+                    <label class="">Số lượng</label>
+                </th>
+                <th>
+                    <label class="">Giá tiền</label>
+                </th>
+                <th>
+                    <label class="">Bán chạy</label>
+                </th>
+                <th>
+                    <label class="">Đã xóa</label>
+                </th>
+                <th>
+                    <label class="">Hành động</label>
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="25%">
+                        <span>@item.ThietBi.TenTB</span>
+                    </td>
+                    <td width="25%">
+                        <img src="@Url.Content("~/Assests/HinhSP/" + @item.ThietBi.HinhAnh1)" alt="" height="150px">
+                    </td>
+                    <td width="5%">
+                        <span>@item.SoLuong</span>
+                    </td>
+                    <td width="25%">
+                        <span>@item.GiaTien.ToString("##,#", new CultureInfo("es-ES")) VNĐ</span>
+                    </td>
+                    <td width="5%">
+                        @{
+                if (item.ThietBi.IsBestSeller)
+                {
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                }
+                        }
+                    </td>
+
+                    <td width="5%">
+                        @{
+                if (item.ThietBi.IsDelete)
+                {
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                }
+                        }
+                    </td>
+
+                    <td width="10%">
+                        @Html.ActionLink("Sửa", "SuaThietBi", new { @maTB = item.MaTB }) |
+                        @Html.ActionLink("Xóa", "XoaThietBi", new { @maTB = item.MaTB })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div style="color:#CCC;" class="d-flex flex-column justify-content-center">
+            <div class="text-center clear-both">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</div>
+            <div class="text-center clear-both" style="margin:0 auto;">
+                @Html.PagedListPager(Model, page => Url.Action("QuanLyLoaiThietBi", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

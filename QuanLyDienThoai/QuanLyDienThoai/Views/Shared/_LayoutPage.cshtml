@@ -1,0 +1,558 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Shop Điện Thoại Lê Trọng Tấn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="~/Assests/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Assests/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Assests/css/fontawesome-all.css">
+    <link href="~/Assests/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Assests/css/menu.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext"
+          rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+          rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        @if (TempData["message"] != null)
+        {
+            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                @TempData["message"]
+            </div>
+        }
+    </div>
+    <div class="container-fluid">
+        <div class="agile-main-top">
+            <div class="container-fluid">
+                <div class="row main-top-w3l py-2">
+                    <div class="col-lg-4 header-most-top">
+                    </div>
+                    <div class="col-lg-8 header-right mt-lg-0 mt-2">
+                        <ul class="d-flex flex-row align-items-center">
+                            <li class="text-center text-white ml-auto">
+
+                            </li>
+                            <li class="text-center border-right text-white">
+                                <i class="fa fa-phone-square mr-2"></i> 0375 155 487
+                            </li>
+                            <li class="text-center border-right text-white">
+                                <i class="fas fa-phone mr-2"></i> 0954 123 114
+                            </li>
+                            @{
+                                if (Session["dangnhap"] == null)
+                                {
+                                    <li class="text-center border-right text-white">
+                                        <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
+                                            <i class="fas fa-sign-in-alt mr-2"></i> Đăng nhập
+                                        </a>
+                                    </li>
+                                    <li class="text-center text-white">
+                                        <a href="#" data-toggle="modal" data-target="#exampleModal2" class="text-white">
+                                            <i class="fas fa fa-user-plus mr-2"></i>Đăng ký
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+                                        <a class="text-center text-white nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                           aria-haspopup="true" aria-expanded="false">
+                                            @Session["dangnhap"].ToString()
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">
+                                                <span>Thông tin</span><i class="fas fa-info ml-3"></i>
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="@Url.Action("XuLyDangXuat","DangNhap")">
+                                                <span>Đăng xuất</span><i class="fas fa-sign-out-alt ml-2"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Đăng Nhập</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="@Url.Action("XuLyDangNhap","DangNhap")" method="post">
+                            <div class="form-group">
+                                <label class="col-form-label">Tài Khoản</label>
+                                <input type="text" class="form-control" placeholder=" " name="Name" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Mật Khẩu</label>
+                                <input type="password" class="form-control" placeholder=" " name="Password" required="">
+                            </div>
+                            <div class="right-w3l">
+                                <input type="submit" class="form-control" value="Đăng Nhập">
+                            </div>
+                            <p class="text-center dont-do mt-3">
+                                Không có tài khoản?
+                                <a href="#" data-toggle="modal" data-target="#exampleModal2">
+                                    Đăng ký ngay
+                                </a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Đăng Ký</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="@Url.Action("XuLyDangKy","DangNhap")" method="post" onsubmit="return checkNhap()">
+                            <div class="form-group">
+                                <label class="col-form-label">Tên đăng nhập</label>
+                                <input type="text" class="form-control" placeholder=" " name="Name" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Họ Tên</label>
+                                <input type="text" class="form-control" placeholder=" " name="FullName" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Email</label>
+                                <input type="email" class="form-control" placeholder=" " name="Email">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" placeholder=" " name="Address" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Số ĐT</label>
+                                <input id="txtSDT" type="text" class="form-control" placeholder=" " name="Tel" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Mật Khẩu</label>
+                                <input type="password" class="form-control" placeholder=" " name="Password"
+                                       id="password1" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Nhập Lại Mật Khẩu</label>
+                                <input type="password" class="form-control" placeholder=" " name="Confirm Password"
+                                       id="password2" required="">
+                            </div>
+                            <div class="right-w3l">
+                                <input type="submit" class="form-control" value="Đăng Ký">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bot">
+            <div class="container-fluid">
+                <div class="row header-bot_inner_wthreeinfo_header_mid">
+                    <div class="col-md-3 logo_agile">
+                        <h1 class="text-left">
+                            <a href="@Url.Action("ShowListSanPham", "SanPham")" class="font-weight-bold font-italic">Bảo An Mobile</a>
+                        </h1>
+                    </div>
+                    <div class="col-md-9 header mt-4 mb-md-0 mb-4">
+                        <div class="row">
+                            <div class="col-10 agileits_search">
+                                <form class="form-inline" action="@Url.Action("KQTimKiemTen", "TimKiem")" method="post">
+                                    <input name="sTuKhoa" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm sản phẩm"
+                                           aria-label="Search" required>
+                                    <button class="btn my-2 my-sm-0" type="submit">Tìm</button>
+                                </form>
+                            </div>
+                            <div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
+                                <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+                                    @Html.Action("GioHangPartial", "GioHang")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-inner">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav text-center mr-xl-5">
+                        <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link" href="@Url.Action("ShowListSanPham", "SanPham")">
+                                Trang Chủ
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Điện thoại
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="agile_inner_drop_nav_info p-4">
+                                    <h5 class="mb-3"><span style="margin-right:220px;">Điện thoại</span><span>Phụ kiện</span></h5>
+                                    <div class="row">
+                                        <div class="col-sm-6 multi-gd-img">
+                                            @Html.Action("MenuDienThoaiPartial", "PhanLoai")
+                                        </div>
+                                        <div class="col-sm-6 multi-gd-img">
+                                            @Html.Action("MenuPhuKienPartial", "PhanLoai")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link" href="@Url.Action("QuyDinhDoiTra", "Home")">Quy định đổi trả</a>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link" href="@Url.Action("PhuongThucVanChuyen", "Home")">Phương thức vân chuyển</a>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link" href="@Url.Action("VeChungToi", "Home")">Về chúng tôi</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div id="carouselControls" class="carousel slide w-100 mx-auto" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item carousel-item active">
+                    <img src="/Assests/images/banner_1.jpg" class="d-block w-100" alt="anh 1">
+                </div>
+                <div class="item carousel-item">
+                    <img src="~/Assests/images/banner_2.jpg" class="d-block w-100" alt="anh 2">
+                </div>
+                <div class="item carousel-item">
+                    <img src="~/Assests/images/banner_3.jpg" class="d-block w-100" alt="anh 3">
+                </div>
+                <div class="item carousel-item">
+                    <img src="~/Assests/images/banner_4.png" class="d-block w-100" alt="anh 4">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="ads-grid">
+            <div class="py-xl-4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="agileinfo-ads-display col-lg-9 md-12 pl-0">
+                            @RenderBody()
+                        </div>
+                        <div class="col-lg-3 mt-lg-0 md-12 mt-4 p-lg-0">
+                            @Html.Action("ListSanPhamBanChayNhat", "SanPham")
+                            @*@Html.Partial("~/Views/SanPham/ListSanPhamMoiNhat.cshtml", ViewBag.listBSP)*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-top-first">
+                <div class="container-fluid">
+                    <div class="row w3l-grids-footer border-top border-bottom py-sm-4 py-3">
+                        <div class="col-md-4 offer-footer">
+                            <div class="row">
+                                <div class="col-4 icon-fot">
+                                    <i class="fas fa-dolly"></i>
+                                </div>
+                                <div class="col-8 text-form-footer">
+                                    <h3>Giao hàng miễn phí</h3>
+                                    <p>với hóa đơn từ 30 triệu đồng</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 offer-footer my-md-0 my-4">
+                            <div class="row">
+                                <div class="col-4 icon-fot">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="col-8 text-form-footer">
+                                    <h3>Giao hàng nhanh</h3>
+                                    <p>Toàn quốc</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 offer-footer">
+                            <div class="row">
+                                <div class="col-4 icon-fot">
+                                    <i class="far fa-thumbs-up"></i>
+                                </div>
+                                <div class="col-8 text-form-footer">
+                                    <h3>Uy tín</h3>
+                                    <p>của mọi nhà</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w3l-middlefooter-sec">
+                <div class="container-fluid py-md-5 py-sm-4 py-3">
+                    <div class="row footer-info w3-agileits-info">
+                        <div class="col-md-3 col-sm-6 footer-grids">
+                            <h3 class="text-white font-weight-bold mb-3">Sản phẩm</h3>
+                            <ul>
+                                <li class="mb-3">
+                                    <a>Điện thoại</a>
+                                </li>
+                                <li class="mb-3">
+                                    <a>Phụ kiện</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 footer-grids mt-sm-0 mt-4">
+                            <h3 class="text-white font-weight-bold mb-3">Truy cập nhanh</h3>
+                            <ul>
+                                <li class="mb-3">
+                                    <a href="@Url.Action("VeChungToi", "Home")">Về chúng tôi</a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="@Url.Action("PhuongThucVanChuyen", "Home")">Phương thức vận chuyển</a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="@Url.Action("QuyDinhDoiTra", "Home")">Quy đinh đổi trả</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 footer-grids mt-md-0 mt-4">
+                            <h3 class="text-white font-weight-bold mb-3">Liên lạc</h3>
+                            <ul>
+                                <li class="mb-3">
+                                    <i class="fas fa-map-marker"></i> 140 Lê Trọng Tấn, HCM.
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-mobile"></i> 0375 115 487
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-phone"></i> 0954 123 114
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-envelope-open"></i>
+                                    <a href="mailto:example@mail.com"> mail@gmail.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 footer-grids w3l-agileits mt-md-0 mt-4">
+                            <div class="footer-grids  w3l-socialmk mt-3">
+                                <h3 class="text-white font-weight-bold mb-3">Theo dõi chúng tôi</h3>
+                                <div class="social">
+                                    <ul>
+                                        <li>
+                                            <a class="icon fb" href="https://www.facebook.com/" target="_blank">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="icon tw" href="https://twitter.com/" target="_blank">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="icon gp" href="https://www.google.com/" target="_blank">
+                                                <i class="fab fa-google-plus-g"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="copy-right py-3">
+            <div class="container-fluid">
+                <p class="text-center text-white">
+                    © 2021 Bao An Mobile
+                </p>
+            </div>
+        </div>
+    </div>
+
+    @*@if (TempData["message"] != null)
+        {
+            @Html.Raw(TempData["message"])
+        }*@
+
+    @*<script>
+            $(document).ready(function () {
+                $('#AlertBox').removeClass('hide');
+                $('#AlertBox').delay(1000).slideUp(500);
+            })
+        </script>*@
+
+    <script src="~/Assests/js/jquery-2.2.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+				function () {
+				    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+				    $(this).toggleClass('open');
+				},
+				function () {
+				    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+				    $(this).toggleClass('open');
+				}
+			);
+        });
+    </script>
+    <script>
+        $('.value-plus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+				newVal = parseInt(divUpd.text(), 10) + 1;
+            divUpd.text(newVal);
+        });
+
+        $('.value-minus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+				newVal = parseInt(divUpd.text(), 10) - 1;
+            if (newVal >= 1) divUpd.text(newVal);
+        });
+    </script>
+    <script src="~/Assests/js/jquery.magnific-popup.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+    <script src="~/Assests/js/minicart.js"></script>
+    <script>
+        paypals.minicarts.render();
+
+        paypals.minicarts.cart.on('checkout', function (evt) {
+            var items = this.items(),
+				len = items.length,
+				total = 0,
+				i;
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
+        });
+    </script>
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Mật khẩu không trùng nhau");
+            else
+                document.getElementById("password2").setCustomValidity('');
+        }
+    </script>
+    <script src="~/Assests/js/scroll.js"></script>
+    <script src="~/Assests/js/SmoothScroll.min.js"></script>
+    <script src="~/Assests/js/move-top.js"></script>
+    <script src="~/Assests/js/easing.js"></script>
+    <!-- imagezoom -->
+    <script src="~/Assests/js/imagezoom.js"></script>
+    <!-- //imagezoom -->
+    <!-- flexslider -->
+    <link rel="stylesheet" href="~/Assests/css/flexslider.css" type="text/css" media="screen" />
+
+    <script src="~/Assests/js/jquery.flexslider.js"></script>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+    <!-- //FlexSlider-->
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="~/Assests/js/bootstrap.js"></script>
+    <script language="javascript">
+
+        function checkNhap() {
+            var sdt = document.getElementById('txtSDT').value;
+            if (phonenumber(sdt) == false) {
+                alert("Sai định dạng số điện thoại !!");
+                return false;
+            }
+
+            return true;
+        }
+        function phonenumber(sdt) {
+            var phoneVN_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            //Viettel 09, 03; Mobi 09, 07; Vina 09, 08; VietnamMobile GMobli 09, 05
+            if (phoneVN_regex.test(sdt) == false)
+                return false;
+            return true;
+        }
+    </script>
+
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('#AlertBox').removeClass('hide');
+        $('#AlertBox').delay(5000).slideUp(500);
+    })
+</script>

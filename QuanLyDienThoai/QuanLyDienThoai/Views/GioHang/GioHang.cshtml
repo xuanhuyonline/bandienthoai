@@ -1,0 +1,79 @@
+﻿@using QuanLyDienThoai.Models
+@using System.Globalization;
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="privacy py-sm-5 py-4">
+    <div class="container-fluid py-xl-4 py-lg-2">
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span>Giỏ hàng</span>
+        </h3>
+        <div class="checkout-right">
+            <h4 class="d-flex justify-content-between mb-sm-4 mb-3">
+                <span class="d-flex">Giỏ hàng có: @ViewBag.TongSoLuong sản phẩm</span>
+                <span class="d-flex">Tổng tiền: @ViewBag.TongThanhTien.ToString("##,#", new CultureInfo("es-ES")) VNĐ</span>
+            </h4>
+            <div class="table-responsive">
+                <table class="timetable_sub">
+                    <thead>
+                        <tr>
+                            <th>Sản Phẩm</th>
+                            <th>Số Lượng</th>
+                            <th>Tên Sản Phẩm</th>
+
+                            <th>Giá</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr class="rem1">
+                            <td width="25%">
+                                <a href="@Url.Action("XemChiTiet", "SanPham", new { @maSP = item.iMaSP})">
+                                    <img src="@Url.Content("~/Assests/HinhSP/" + @item.sAnh)" alt="" height="150px">
+                                </a>
+                            </td>
+                            <td width="20%">
+                                <div class="quantity">
+                                    <div class="quantity-select">
+                                        <a href="@Url.Action("BotGioHang", "GioHang", new { @ms = item.iMaSP, @strURL = Request.Url.ToString() })">
+                                            <div class="entry value-minus" onclick="logdata">&nbsp;</div>
+                                        </a>
+                                        <div class="entry value font-size--18">
+                                            <span>@item.iSoLuong</span>
+                                        </div>
+                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @ms = item.iMaSP, @strURL = Request.Url.ToString() })">
+                                            <div class="entry value-plus active">&nbsp;</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="30%" class="font-size--18">@item.sTenSP</td>
+                            <td width="15%" class="font-size--18" style="color:red;">@item.dThanhTien.ToString("##,#", new CultureInfo("es-ES")) VNĐ</td>
+                            <td width="10%">
+                                <a href="@Url.Action("XoaGioHang", "GioHang", new { @maSP = item.iMaSP })" style="color:#333333;"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="checkout-right-basket">
+            <a href="@Url.Action("ThanhToan","ThanhToan")">
+                Thanh toán
+                <span class="far fa fa-check">
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    function logdata()
+    {
+        alert("Không Thể Đặt Quá 4 Sản Phẩm");
+    }
+</script>

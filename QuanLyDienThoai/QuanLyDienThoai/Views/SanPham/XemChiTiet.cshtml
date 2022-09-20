@@ -1,0 +1,126 @@
+﻿@using QuanLyDienThoai.Models;
+@model ChiTietThietBi
+@using System.Globalization;
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@*@{
+        if (Session["quyen"].ToString() == "admin")
+        {
+            <h3 class="tittle-w3l text-center mb-lg-4 mb-sm-3 mb-2">
+                <marquee>
+                    <span>Danh sách hàng hóa </span>
+                </marquee>
+            </h3>
+        }
+    }*@
+
+<div class="banner-bootom-w3-agileits py-5">
+    <div class="container-fluid py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span>Sản phẩm @Model.ThietBi.TenTB</span>
+        </h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <div class="col-lg-5 col-md-8 single-right-left ">
+                <div class="grid images_3_of_2">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li data-thumb="@Url.Content("~/Assests/HinhSP/" + @Model.ThietBi.HinhAnh1)">
+                                <div class="thumb-image">
+                                    <img src="@Url.Content("~/Assests/HinhSP/" + @Model.ThietBi.HinhAnh1)" data-imagezoom="true" class="img-fluid" alt="">
+                                </div>
+                            </li>
+                            <li data-thumb="@Url.Content("~/Assests/HinhSP/" + @Model.ThietBi.HinhAnh2)">
+                                <div class="thumb-image">
+                                    <img src="@Url.Content("~/Assests/HinhSP/" + @Model.ThietBi.HinhAnh2)" data-imagezoom="true" class="img-fluid" alt="">
+                                </div>
+                            </li>
+                            <li data-thumb="@Url.Content("~/Assests/HinhSP/" + @Model.ThietBi.HinhAnh3)">
+                                <div class="thumb-image">
+                                    <img src="@Url.Content("~/Assests/HinhSP/" + @Model.ThietBi.HinhAnh3)" data-imagezoom="true" class="img-fluid" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 single-right-left simpleCart_shelfItem">
+                <h3 class="mb-3">@Model.ThietBi.TenTB</h3>
+                <p class="mb-3">
+                    <span class="item_price">@Model.GiaTien.ToString("##,#", new CultureInfo("es-ES")) VNĐ</span>
+                </p>
+                <div class="single-infoagile">
+                    <ul>
+                        @{
+                            if (Model.SoLuong == 0)
+                            {
+                                <li class="mb-3" style="color:red;">
+                                    Hết hàng
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="mb-3">
+                                    Số lượng còn: @Model.SoLuong
+                                 
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="product-single-w3l">
+                    <p class="my-3">
+                        <i class="far fa fa-info-circle mr-2"></i>
+                        <span style="color:blueviolet; font-size:20px;">Thông số kỹ thuật</span>
+                    </p>
+                    <ul>
+                        @{
+                            if (Model.ThietBi.LoaiThietBi.Note == "DT")
+                            {
+                                <li class="mb-1">
+                                    Ram: @Model.RAM
+                                </li>
+                                <li class="mb-1">
+                                    Màn hình: @Model.ManHinh
+                                </li>
+                                <li class="mb-1">
+                                    Pin: @Model.Pin
+                                </li>
+                                <li class="mb-1">
+                                    Bộ nhớ trong: @Model.BoNhoTrong
+                                </li>
+                                <li class="mb-1">
+                                    Chip: @Model.Chip
+                                </li>
+                                <li class="mb-1">
+                                    Camera sau: @Model.CameraSau
+                                </li>
+                                <li class="mb-1">
+                                    Camera trước: @Model.CameraTruoc
+                            </li>
+                            }
+                            else
+                            {
+                                <li class="mb-1">
+                                    Mô tả: @Model.Khac
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="occasion-cart mt-5">
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @ms = Model.MaTB, @strURL = Request.Url.ToString() })">
+                            <input type="submit" value="MUA NGAY" class="button btn" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

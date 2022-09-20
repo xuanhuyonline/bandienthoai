@@ -1,0 +1,145 @@
+﻿@model QuanLyDienThoai.Models.ThietBi
+
+@{
+    ViewBag.Title = "TaoMoiThietBi";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+
+<div class="row justify-content-md-center">
+    <div class="col-6">
+        <h2>Thêm điện thoại</h2>
+
+        @using (Html.BeginForm("TaoMoiThietBi", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true)
+
+                <div class="form-group">
+                    <label class="control-label col">Tên sản phẩm</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.TenTB, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TenTB)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Loại sản phẩm</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaLoai", null, new { @class = "custom-select" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Nhà cung cấp</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaNCC", null, new { @class = "custom-select" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Số lượng</label>
+                    <div class="col-md-10">
+                        <input type="number" name="SoLuong" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Giá tiền</label>
+                    <div class="col-md-10">
+                        <input type="number" name="GiaTien" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Ram</label>
+                    <div class="col-md-10">
+                        <input type="text" name="RAM" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Màn hình</label>
+                    <div class="col-md-10">
+                        <input type="text" name="ManHinh" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Pin</label>
+                    <div class="col-md-10">
+                        <input type="text" name="Pin" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Bộ nhớ trong</label>
+                    <div class="col-md-10">
+                        <input type="text" name="BoNhoTrong" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Chip</label>
+                    <div class="col-md-10">
+                        <input type="text" name="Chip" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Camera Sau</label>
+                    <div class="col-md-10">
+                        <input type="text" name="CameraSau" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Camera Trước</label>
+                    <div class="col-md-10">
+                        <input type="text" name="CameraTruoc" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Hình 1</label>
+                    <div class="col-md-10">
+                        <input name="HinhAnh1" type="file" required />
+                        <span class="text-danger">@ViewBag.Upload1</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Hình 2</label>
+                    <div class="col-md-10">
+                        <input name="HinhAnh2" type="file" required />
+                        <span class="text-danger">@ViewBag.Upload2</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Hình 3</label>
+                    <div class="col-md-10">
+                        <input name="HinhAnh3" type="file" required/>
+                        <span class="text-danger">@ViewBag.Upload3</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col">Ngày tạo</label>
+                    <div class="col-md-10">
+                        <input type="date" name="NgayUpLoad" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@using QuanLyDienThoai.Models
+@model List<LoaiThietBi>
+
+<ul class="multi-column-dropdown">
+    @{
+        foreach (var item in Model)
+        {
+            <li>
+                <a href="@Url.Action("SanPhamTheoLoai", "SanPham", new { maLoai = item.MaLoai })">@item.TenLoai</a>
+            </li>
+        }
+    }
+</ul>

@@ -1,0 +1,53 @@
+﻿@using QuanLyDienThoai.Models
+@model NhanVien
+@{
+    ViewBag.Title = "ThanhToan";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="container-fluid">
+    <h3 class="tittle-w3l text-center mb-lg-4 mb-sm-3 mb-2">
+        <marquee>
+            <span>Xác nhận thanh toán</span>
+        </marquee>
+    </h3>
+    <form action="@Url.Action("XacNhanThanhToan","ThanhToan")" method="post" class="creditly-card-form agileinfo_form">
+        <div class="creditly-wrapper wthree, w3_agileits_wrapper">
+            <div class="credit-card-wrapper">
+                <div class="first-row form-group">
+                    <div class="controls">
+                        <label class="control-label">Họ và tên</label>
+                        <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ và tên" value="@Model.TenNV">
+                    </div>
+                    <div class="w3_agileits_card_number_grids my-3">
+                        <div class="w3_agileits_card_number_grid_left">
+                            <div class="controls">
+                                <label class="control-label">Địa chỉ</label>
+                                <input class="number credit-card-number form-control" type="text" name="Address" placeholder="Địa chỉ" value="@Model.DiaChi">
+                            </div>
+                        </div>
+                        <div class="w3_agileits_card_number_grid_right mt-2">
+                            <div class="controls">
+                                <label class="control-label">Số điện thoại</label>
+                                <input class="security-code form-control" type="text" name="Tel" placeholder="Số điện thoại" value="@Model.DienThoai">
+                            </div>
+                        </div>
+                        <div class="clear"> </div>
+                    </div>
+                    <div class="controls">
+                        <label class="control-label">Email</label>
+                        <input class="expiration-month-and-year form-control" type="email" name="email" placeholder="Email" value="@Model.Email">
+                    </div>
+                </div>
+                <div class="checkout-right-basket">
+                    <button type="submit" class="btn">
+                        Xác nhận
+                        <span class="far fa fa-paper-plane">
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

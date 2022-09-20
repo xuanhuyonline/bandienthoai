@@ -1,0 +1,32 @@
+﻿@using QuanLyDienThoai.Models
+@using PagedList.Mvc;
+@using PagedList;
+
+@model PagedList.IPagedList<ChiTietThietBi>
+
+
+@{
+    ViewBag.Title = "ShowListSanPham";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@{
+    PagedList.IPagedList listSP = ViewBag.listSP as PagedList.IPagedList;
+}
+
+<div class="wrapper">
+    <div class="product-sec1 px-sm-4 px-3 py-3 mb-4">
+        <h3 class="tittle-w3l text-center mb-lg-4 mb-sm-3 mb-2">
+            <marquee>
+                <span>Danh sách hàng hóa </span>
+            </marquee>
+        </h3>
+        @Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", listSP)
+    </div>
+    <div style="color:#CCC;" class="d-flex flex-column justify-content-center">
+        <div class="text-center clear-both">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</div>
+        <div class="text-center clear-both" style="margin:0 auto;">
+            @Html.PagedListPager(Model, page => Url.Action("ShowListSanPham", new { page }))
+        </div>
+    </div>
+</div>
